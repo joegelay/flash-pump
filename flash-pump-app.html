@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flash Pump - Forearm Trainer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🧗 Flash Pump</h1>
+        <p>Forearm Trainer for Climbers</p>
+      </div>
+
+      <div class="mode-selector">
+        <button class="mode-btn active" data-mode="basic">Basic Workout</button>
+        <button class="mode-btn" data-mode="timed">Timed Workout</button>
+        <button class="mode-btn" data-mode="hold">Max Hold</button>
+        <button class="mode-btn" data-mode="cumulative-time">
+          Cumulative Time
+        </button>
+        <button class="mode-btn" data-mode="cumulative-reps">Rep Goal</button>
+      </div>
+
+      <div class="instructions">
+        <p>
+          Use your forearm trainer to get pumped! Press R/L keys to switch
+          hands. Get ready to train!
+        </p>
+      </div>
+
+      <div class="workout-area">
+        <div class="hand-selector">
+          <button class="hand-btn active" data-hand="left">Left Hand</button>
+          <button class="hand-btn" data-hand="right">Right Hand</button>
+        </div>
+
+        <div id="mode-content">
+          <!-- Mode-specific content will be inserted here -->
+        </div>
+      </div>
+
+      <div class="-scores" id="high-scores">
+        <!-- High scores will be displayed here -->
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
