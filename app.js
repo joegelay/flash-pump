@@ -498,6 +498,12 @@ class FlashPumpApp {
     if (customTimeInput) {
       customTimeInput.addEventListener('input', (e) => {
         this.settings.customTime = parseInt(e.target.value) || '';
+        // Don't call updateDisplay() here as it causes the input to lose focus
+        // The display will update when user finishes typing or switches focus
+      });
+
+      // Update display when user finishes typing (on blur)
+      customTimeInput.addEventListener('blur', (e) => {
         this.updateDisplay();
       });
     }
@@ -522,6 +528,11 @@ class FlashPumpApp {
     if (customCumulativeGoal) {
       customCumulativeGoal.addEventListener('input', (e) => {
         this.settings.cumulativeGoal = parseInt(e.target.value) || 60;
+        // Don't call updateDisplay() here as it causes the input to lose focus
+      });
+
+      // Update display when user finishes typing (on blur)
+      customCumulativeGoal.addEventListener('blur', (e) => {
         this.updateDisplay();
       });
     }
@@ -530,6 +541,11 @@ class FlashPumpApp {
     if (customRepGoal) {
       customRepGoal.addEventListener('input', (e) => {
         this.settings.repGoal = parseInt(e.target.value) || 50;
+        // Don't call updateDisplay() here as it causes the input to lose focus
+      });
+
+      // Update display when user finishes typing (on blur)
+      customRepGoal.addEventListener('blur', (e) => {
         this.updateDisplay();
       });
     }
