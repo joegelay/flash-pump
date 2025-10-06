@@ -661,6 +661,32 @@ class FlashPumpApp {
     }
   }
 
+  resetHighScores() {
+    // Show confirmation dialog
+    if (confirm('Are you sure you want to reset all high scores? This action cannot be undone.')) {
+      // Reset all high scores to initial values
+      this.highScores = {
+        basicLeft: 0,
+        basicRight: 0,
+        timedLeft: {},
+        timedRight: {},
+        holdLeft: 0,
+        holdRight: 0,
+        cumulativeTimeLeft: 0,
+        cumulativeTimeRight: 0,
+      };
+
+      // Save to localStorage
+      localStorage.setItem('flashPumpScores', JSON.stringify(this.highScores));
+
+      // Update display
+      this.updateHighScoresDisplay();
+
+      // Show confirmation message
+      this.showCelebration('High scores have been reset!');
+    }
+  }
+
   updateHighScoresDisplay() {
     const highScoresElement = document.getElementById('high-scores');
     // Timed highscores: show all durations for each hand
@@ -704,7 +730,18 @@ class FlashPumpApp {
           <span>${this.highScores.holdRight.toFixed(1)}s</span>
         </div>
       </div>
+      <div style="margin-top: 15px; text-align: center;">
+        <button class="control-btn reset" id="reset-high-scores-btn" style="background-color: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer;">Reset High Scores</button>
+      </div>
     `;
+
+    // Add event listener for reset button
+    const resetBtn = document.getElementById('reset-high-scores-btn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        this.resetHighScores();
+      });
+    }
   }
 }
 
