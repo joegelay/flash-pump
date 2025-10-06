@@ -245,15 +245,13 @@ class FlashPumpApp {
   renderBasicMode() {
     return `
       <div class="stats-display">
-        <div class="stat-card ${
-          this.currentHand === 'left' ? 'active-hand' : ''
-        }">
+        <div class="stat-card ${this.currentHand === 'left' ? 'active-hand' : ''
+      }">
           <div class="stat-value">${this.data.left.reps}</div>
           <div class="stat-label">Left Hand</div>
         </div>
-        <div class="stat-card ${
-          this.currentHand === 'right' ? 'active-hand' : ''
-        }">
+        <div class="stat-card ${this.currentHand === 'right' ? 'active-hand' : ''
+      }">
           <div class="stat-value">${this.data.right.reps}</div>
           <div class="stat-label">Right Hand</div>
         </div>
@@ -269,59 +267,50 @@ class FlashPumpApp {
     const timeLeft =
       this.isActive && this.startTime
         ? Math.max(
-            0,
-            (this.settings.customTime || this.settings.timedDuration) -
-              (Date.now() - this.startTime) / 1000
-          )
+          0,
+          (this.settings.customTime || this.settings.timedDuration) -
+          (Date.now() - this.startTime) / 1000
+        )
         : this.settings.customTime || this.settings.timedDuration;
 
     return `
                     <div class="timer-setup">
-                        <button class="time-btn ${
-                          this.settings.timedDuration === 60 &&
-                          !this.settings.customTime
-                            ? 'active'
-                            : ''
-                        }" data-time="60">1 Min</button>
-                        <button class="time-btn ${
-                          this.settings.timedDuration === 180 &&
-                          !this.settings.customTime
-                            ? 'active'
-                            : ''
-                        }" data-time="180">3 Min</button>
-                        <button class="time-btn ${
-                          this.settings.timedDuration === 300 &&
-                          !this.settings.customTime
-                            ? 'active'
-                            : ''
-                        }" data-time="300">5 Min</button>
-                        <input type="number" class="custom-input" placeholder="Custom" value="${
-                          this.settings.customTime
-                        }" id="custom-time" min="1" max="3600">
+                        <button class="time-btn ${this.settings.timedDuration === 60 &&
+        !this.settings.customTime
+        ? 'active'
+        : ''
+      }" data-time="60">1 Min</button>
+                        <button class="time-btn ${this.settings.timedDuration === 180 &&
+        !this.settings.customTime
+        ? 'active'
+        : ''
+      }" data-time="180">3 Min</button>
+                        <button class="time-btn ${this.settings.timedDuration === 300 &&
+        !this.settings.customTime
+        ? 'active'
+        : ''
+      }" data-time="300">5 Min</button>
+                        <input type="number" class="custom-input" placeholder="Custom" value="${this.settings.customTime
+      }" id="custom-time" min="1" max="3600">
                     </div>
                     <div class="stats-display">
                         <div class="stat-card">
                             <div class="stat-value">${Math.ceil(timeLeft)}</div>
                             <div class="stat-label">Time Left (s)</div>
                         </div>
-                        <div class="stat-card ${
-                          this.currentHand === 'left' ? 'active-hand' : ''
-                        }${this.currentHand === 'right' ? 'active-hand' : ''}">
-                            <div class="stat-value">${
-                              this.data[this.currentHand].reps
-                            }</div>
-                            <div class="stat-label">${
-                              this.currentHand
-                            } Hand Reps</div>
+                        <div class="stat-card ${this.currentHand === 'left' ? 'active-hand' : ''
+      }${this.currentHand === 'right' ? 'active-hand' : ''}">
+                            <div class="stat-value">${this.data[this.currentHand].reps
+      }</div>
+                            <div class="stat-label">${this.currentHand
+      } Hand Reps</div>
                         </div>
                     </div>
                     <div class="control-buttons">
-                        <button class="control-btn" onclick="app.startWorkout()" ${
-                          this.isActive ? 'disabled' : ''
-                        }>Start</button>
-                        <button class="control-btn stop" onclick="app.stopWorkout()" ${
-                          !this.isActive ? 'disabled' : ''
-                        }>Stop</button>
+                        <button class="control-btn" onclick="app.startWorkout()" ${this.isActive ? 'disabled' : ''
+      }>Start</button>
+                        <button class="control-btn stop" onclick="app.stopWorkout()" ${!this.isActive ? 'disabled' : ''
+      }>Stop</button>
                         <button class="control-btn reset" onclick="app.resetWorkout()">Reset</button>
                     </div>
                 `;
@@ -336,19 +325,17 @@ class FlashPumpApp {
                     <div class="stats-display">
                         <div class="stat-card">
                             <div class="stat-value">${currentHold.toFixed(
-                              1
-                            )}</div>
+      1
+    )}</div>
                             <div class="stat-label">Current Hold (s)</div>
                         </div>
-                        <div class="stat-card ${
-                          this.currentHand === 'left' ? 'active-hand' : ''
-                        }${this.currentHand === 'right' ? 'active-hand' : ''}">
+                        <div class="stat-card ${this.currentHand === 'left' ? 'active-hand' : ''
+      }${this.currentHand === 'right' ? 'active-hand' : ''}">
                             <div class="stat-value">${this.data[
-                              this.currentHand
-                            ].maxHold.toFixed(1)}</div>
-                            <div class="stat-label">${
-                              this.currentHand
-                            } Max Hold (s)</div>
+        this.currentHand
+      ].maxHold.toFixed(1)}</div>
+                            <div class="stat-label">${this.currentHand
+      } Max Hold (s)</div>
                         </div>
                     </div>
                     <div class="control-buttons">
@@ -365,15 +352,12 @@ class FlashPumpApp {
     return `
       <div class="timer-setup">
         <span style="color: #bdc3c7; margin-right: 15px;">Goal:</span>
-        <button class="goal-btn ${
-          this.settings.cumulativeGoal === 30 ? 'active' : ''
-        }" data-goal="30">30s</button>
-        <button class="goal-btn ${
-          this.settings.cumulativeGoal === 60 ? 'active' : ''
-        }" data-goal="60">60s</button>
-        <button class="goal-btn ${
-          this.settings.cumulativeGoal === 120 ? 'active' : ''
-        }" data-goal="120">2 Min</button>
+        <button class="goal-btn ${this.settings.cumulativeGoal === 30 ? 'active' : ''
+      }" data-goal="30">30s</button>
+        <button class="goal-btn ${this.settings.cumulativeGoal === 60 ? 'active' : ''
+      }" data-goal="60">60s</button>
+        <button class="goal-btn ${this.settings.cumulativeGoal === 120 ? 'active' : ''
+      }" data-goal="120">2 Min</button>
         <input type="number" class="custom-input" placeholder="Custom" id="custom-cumulative-goal" min="1" max="1800">
       </div>
       <div class="stats-display">
@@ -381,23 +365,20 @@ class FlashPumpApp {
           <div class="stat-value">${this.settings.cumulativeGoal}</div>
           <div class="stat-label">Goal (s)</div>
         </div>
-        <div class="stat-card ${
-          this.currentHand === 'left' ? 'active-hand' : ''
-        }${this.currentHand === 'right' ? 'active-hand' : ''}">
+        <div class="stat-card ${this.currentHand === 'left' ? 'active-hand' : ''
+      }${this.currentHand === 'right' ? 'active-hand' : ''}">
           <div class="stat-value">${(
-            this.data[this.currentHand].cumulativeTime + currentHold
-          ).toFixed(1)}</div>
+        this.data[this.currentHand].cumulativeTime + currentHold
+      ).toFixed(1)}</div>
           <div class="stat-label">${this.currentHand} Total Time (s)</div>
         </div>
       </div>
       <div class="stats-display">
         <div class="stat-card">
-          <div class="stat-value">${
-            currentHold > 0 ? currentHold.toFixed(1) : ''
-          }</div>
-          <div class="stat-label">${
-            currentHold > 0 ? 'Current Hold (s)' : ''
-          }</div>
+          <div class="stat-value">${currentHold > 0 ? currentHold.toFixed(1) : ''
+      }</div>
+          <div class="stat-label">${currentHold > 0 ? 'Current Hold (s)' : ''
+      }</div>
         </div>
       </div>
       <div class="control-buttons">
@@ -413,15 +394,12 @@ class FlashPumpApp {
     return `
                     <div class="timer-setup">
                         <span style="color: #bdc3c7; margin-right: 15px;">Goal:</span>
-                        <button class="goal-btn ${
-                          this.settings.repGoal === 25 ? 'active' : ''
-                        }" data-goal="25">25 Reps</button>
-                        <button class="goal-btn ${
-                          this.settings.repGoal === 50 ? 'active' : ''
-                        }" data-goal="50">50 Reps</button>
-                        <button class="goal-btn ${
-                          this.settings.repGoal === 100 ? 'active' : ''
-                        }" data-goal="100">100 Reps</button>
+                        <button class="goal-btn ${this.settings.repGoal === 25 ? 'active' : ''
+      }" data-goal="25">25 Reps</button>
+                        <button class="goal-btn ${this.settings.repGoal === 50 ? 'active' : ''
+      }" data-goal="50">50 Reps</button>
+                        <button class="goal-btn ${this.settings.repGoal === 100 ? 'active' : ''
+      }" data-goal="100">100 Reps</button>
                         <input type="number" class="custom-input" placeholder="Custom" id="custom-rep-goal" min="1" max="1000">
                     </div>
                     <div class="progress-container">
@@ -429,35 +407,31 @@ class FlashPumpApp {
                             <div class="progress-bar-container">
                                 <div class="progress-bar">
                                     <div class="progress-fill" style="height: ${Math.min(
-                                      leftProgress,
-                                      100
-                                    )}%"></div>
+        leftProgress,
+        100
+      )}%"></div>
                                 </div>
-                                <div style="font-weight: bold; color: ${
-                                  this.currentHand === 'left'
-                                    ? '#e74c3c'
-                                    : '#bdc3c7'
-                                }">
-                                    Left: ${this.data.left.reps}/${
-      this.settings.repGoal
-    }
+                                <div style="font-weight: bold; color: ${this.currentHand === 'left'
+        ? '#e74c3c'
+        : '#bdc3c7'
+      }">
+                                    Left: ${this.data.left.reps}/${this.settings.repGoal
+      }
                                 </div>
                             </div>
                             <div class="progress-bar-container">
                                 <div class="progress-bar">
                                     <div class="progress-fill" style="height: ${Math.min(
-                                      rightProgress,
-                                      100
-                                    )}%"></div>
+        rightProgress,
+        100
+      )}%"></div>
                                 </div>
-                                <div style="font-weight: bold; color: ${
-                                  this.currentHand === 'right'
-                                    ? '#e74c3c'
-                                    : '#bdc3c7'
-                                }">
-                                    Right: ${this.data.right.reps}/${
-      this.settings.repGoal
-    }
+                                <div style="font-weight: bold; color: ${this.currentHand === 'right'
+        ? '#e74c3c'
+        : '#bdc3c7'
+      }">
+                                    Right: ${this.data.right.reps}/${this.settings.repGoal
+      }
                                 </div>
                             </div>
                         </div>
@@ -524,13 +498,12 @@ class FlashPumpApp {
     const finishBtn = document.getElementById('finish-basic-btn');
     if (finishBtn) {
       finishBtn.addEventListener('click', () => {
-        const score = this.data[this.currentHand].reps;
+        const leftScore = this.data.left.reps;
+        const rightScore = this.data.right.reps;
         this.showCelebration(
-          `Finished! ${
-            this.currentHand.charAt(0).toUpperCase() + this.currentHand.slice(1)
-          } Hand: ${score} reps`
+          `Finished! Left Hand: ${leftScore} reps, Right Hand: ${rightScore} reps`
         );
-        this.updateHighScores();
+        this.updateHighScoresForBothHands();
         this.resetWorkout();
       });
     }
@@ -551,15 +524,38 @@ class FlashPumpApp {
     };
   }
 
+  updateHighScoresForBothHands() {
+    let updated = false;
+
+    // Update high scores for both hands in basic mode
+    if (this.currentMode === 'basic') {
+      // Check left hand
+      if (this.data.left.reps > this.highScores.basicLeft) {
+        this.highScores.basicLeft = this.data.left.reps;
+        updated = true;
+      }
+
+      // Check right hand
+      if (this.data.right.reps > this.highScores.basicRight) {
+        this.highScores.basicRight = this.data.right.reps;
+        updated = true;
+      }
+
+      if (updated) {
+        localStorage.setItem('flashPumpScores', JSON.stringify(this.highScores));
+        this.updateHighScoresDisplay();
+      }
+    }
+  }
+
   updateHighScores() {
     const current = this.data[this.currentHand];
     let updated = false;
 
     switch (this.currentMode) {
       case 'basic': {
-        const basicKey = `basic${
-          this.currentHand.charAt(0).toUpperCase() + this.currentHand.slice(1)
-        }`;
+        const basicKey = `basic${this.currentHand.charAt(0).toUpperCase() + this.currentHand.slice(1)
+          }`;
         if (current.reps > this.highScores[basicKey]) {
           this.highScores[basicKey] = current.reps;
           updated = true;
@@ -567,9 +563,8 @@ class FlashPumpApp {
         break;
       }
       case 'timed': {
-        const timedKey = `timed${
-          this.currentHand.charAt(0).toUpperCase() + this.currentHand.slice(1)
-        }`;
+        const timedKey = `timed${this.currentHand.charAt(0).toUpperCase() + this.currentHand.slice(1)
+          }`;
         // Use the actual duration for this workout
         const duration =
           Number(this.settings.customTime) ||
@@ -585,9 +580,8 @@ class FlashPumpApp {
         break;
       }
       case 'hold': {
-        const holdKey = `hold${
-          this.currentHand.charAt(0).toUpperCase() + this.currentHand.slice(1)
-        }`;
+        const holdKey = `hold${this.currentHand.charAt(0).toUpperCase() + this.currentHand.slice(1)
+          }`;
         if (current.maxHold > this.highScores[holdKey]) {
           this.highScores[holdKey] = current.maxHold;
           updated = true;
@@ -595,9 +589,8 @@ class FlashPumpApp {
         break;
       }
       case 'cumulative-time': {
-        const cumTimeKey = `cumulativeTime${
-          this.currentHand.charAt(0).toUpperCase() + this.currentHand.slice(1)
-        }`;
+        const cumTimeKey = `cumulativeTime${this.currentHand.charAt(0).toUpperCase() + this.currentHand.slice(1)
+          }`;
         if (current.cumulativeTime > this.highScores[cumTimeKey]) {
           this.highScores[cumTimeKey] = current.cumulativeTime;
           updated = true;
