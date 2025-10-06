@@ -8,6 +8,7 @@ class FlashPumpApp {
     this.startTime = null;
     this.holdStartTime = null;
     this.timer = null;
+    this.countdownInterval = null;
 
     // Workout data
     this.data = {
@@ -131,9 +132,10 @@ class FlashPumpApp {
       this.checkWorkoutCompletion();
     } else if (
       this.currentMode === 'basic' ||
+      this.currentMode === 'timed' ||
       this.currentMode === 'cumulative-reps'
     ) {
-      // Only increment reps on release in basic or rep goal mode
+      // Only increment reps on release in basic, timed, or rep goal mode
       this.data[this.currentHand].reps++;
       this.updateDisplay();
       this.checkWorkoutCompletion();
@@ -153,6 +155,11 @@ class FlashPumpApp {
         );
         this.updateHighScores();
       }, duration * 1000);
+
+      // Add countdown interval to update just the timer display every 100ms
+      this.countdownInterval = setInterval(() => {
+        this.updateTimerDisplay();
+      }, 100);
     }
 
     this.updateDisplay();
@@ -165,6 +172,10 @@ class FlashPumpApp {
     if (this.holdInterval) {
       clearInterval(this.holdInterval);
       this.holdInterval = null;
+    }
+    if (this.countdownInterval) {
+      clearInterval(this.countdownInterval);
+      this.countdownInterval = null;
     }
     if (this.timer) {
       clearTimeout(this.timer);
@@ -180,6 +191,10 @@ class FlashPumpApp {
     if (this.holdInterval) {
       clearInterval(this.holdInterval);
       this.holdInterval = null;
+    }
+    if (this.countdownInterval) {
+      clearInterval(this.countdownInterval);
+      this.countdownInterval = null;
     }
     this.updateDisplay();
   }
@@ -215,6 +230,31 @@ class FlashPumpApp {
     setTimeout(() => {
       celebration.remove();
     }, 3000);
+  }
+
+  updateTimerDisplay() {
+    // Only update timer-specific elements without full re-render
+    if (this.currentMode === 'timed') {
+      const timeLeft =
+        this.isActive && this.startTime
+          ? Math.max(
+            0,
+            (this.settings.customTime || this.settings.timedDuration) -
+            (Date.now() - this.startTime) / 1000
+          )
+          : this.settings.customTime || this.settings.timedDuration;
+
+      const timerElement = document.querySelector('.stat-value');
+      if (timerElement) {
+        timerElement.textContent = Math.ceil(timeLeft);
+      }
+
+      // Also update reps display
+      const repsElement = document.querySelectorAll('.stat-value')[1];
+      if (repsElement) {
+        repsElement.textContent = this.data[this.currentHand].reps;
+      }
+    }
   }
 
   updateDisplay() {
